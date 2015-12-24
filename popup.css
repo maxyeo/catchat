@@ -1,0 +1,8 @@
+body {
+    min-width:300px;
+}
+
+#picture {
+  min-width:200px;
+  min-height: 200px;
+}
