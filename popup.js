@@ -14,15 +14,17 @@ function showLines() {
 	}
 }
 
+// gets a picture from thecatapi
 function generate() {
 	var index = Math.floor(Math.random() * allLines.length);
 	var arena = document.getElementById('picture');
+	arena.innerHTML = "";
 
 	var row = document.createElement('P');
 	row.innerText = allLines[index];
 	
 	var image = document.createElement('IMG');
-	image.src = 'http://thecatapi.com/api/images/get?format=src';
+	image.src = 'http://thecatapi.com/api/images/get?format=src&' + new Date().getTime();
 	
 	arena.appendChild(row);
 	arena.appendChild(image);
@@ -34,6 +36,10 @@ chrome.extension.onRequest.addListener(function(lines) {
 		allLines.push(lines[index]);
 	}
 	//showLines();
+	generate();
+});
+
+document.getElementById('generate').addEventListener("click", function(lines) {
 	generate();
 });
 
