@@ -1,5 +1,6 @@
 var allLines = [];
 
+// prints chat lines to popup
 function showLines() {
 	console.log('printing');
 	var arena = document.getElementById('picture');
@@ -13,13 +14,27 @@ function showLines() {
 	}
 }
 
+function generate() {
+	var index = Math.floor(Math.random() * allLines.length);
+	var arena = document.getElementById('picture');
+
+	var row = document.createElement('P');
+	row.innerText = allLines[index];
+	
+	var image = document.createElement('IMG');
+	image.src = 'http://thecatapi.com/api/images/get?format=src';
+	
+	arena.appendChild(row);
+	arena.appendChild(image);
+}
+
 chrome.extension.onRequest.addListener(function(lines) {
 	console.log('listended');
 	for (var index in lines) {
 		allLines.push(lines[index]);
 	}
-	//allLines.sort();
-	showLines();
+	//showLines();
+	generate();
 });
 
 window.onload = function() {
