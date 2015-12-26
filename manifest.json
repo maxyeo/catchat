@@ -5,14 +5,13 @@
   "description": "Dank memes",
   "version": "1.0",
 
-  "browser_action": {
-    "default_icon": "CatChat Logo.png",
-    "default_popup": "popup.html"
-  },
+  "content_scripts": [
+    {
+      "css": [ "popup.css" ],
+      "matches": ["https://www.messenger.com/*"],
+      "js": ["jquery-2.1.4.min.js","inside_job.js"]
+    }
+  ],
 
-  "permissions": [
-    "activeTab",
-    "https://ajax.googleapis.com/",
-    "<all_urls>"
-  ]
+  "web_accessible_resources": ["logo-clear.png"]
 }
