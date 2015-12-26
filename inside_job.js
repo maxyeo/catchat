@@ -1,12 +1,12 @@
 
 var lines = [];
 var bad = ['http://', 'https://', 'emoticon'];
-var imgURL = chrome.extension.getURL("logo-clear.png");
-var imgURLselected = chrome.extension.getURL("logo-hover.png");
+var imgURL = chrome.extension.getURL("img/logo-clear.png");
+var imgURLselected = chrome.extension.getURL("img/logo-hover.png");
 
 function getMessages() {
 	console.log('getting messages');
-	lines = $('._52mr');
+	lines = [].slice.apply(document.getElementsByClassName('_52mr'));
 	lines = lines.map(function(element) {
 		if (element.hasChildNodes()) {
 			var tags = element.children;
@@ -44,6 +44,27 @@ function filterMessages() {
 	}
 }
 
+function getText() {
+	getMessages();
+	filterMessages();
+	var index = Math.floor(Math.random() * lines.length);
+	return lines[index];
+}
+
+function generate() {
+	console.log('generating');
+
+	var catBody = $('#catBody');
+	catBody.html('');
+
+	var catImageURL = 'http://thecatapi.com/api/images/get?format=src&' + new Date().getTime();
+	var catImage = '<div id="picture" style="background-image: url(' + catImageURL + ')">';
+	catBody.append(catImage);
+
+	var catText = '<h3>' + getText() + '</h2>';
+	catBody.append(catText);
+}
+
 function implantButton() {
 	console.log('implanting');
 
@@ -55,7 +76,9 @@ function implantButton() {
 	buttons.prepend(catLogo);
 	body.append(popup);
 
-	$('#catPopUp').load(chrome.extension.getURL("popup.html"));
+	$('#catPopUp').load(chrome.extension.getURL("popup.html"), function() {
+		$('#generate').click(generate);
+	});
 }
 
 function popUp() {
@@ -63,6 +86,7 @@ function popUp() {
 	$('.uiContextualLayerPositioner').addClass('hidden_elem');
 	$('a.catbutton').css('background-image', 'url(' + imgURLselected + ')');
 	$('._30yy._yht').removeClass('open');
+	generate();
 }
 
 function popDown() {

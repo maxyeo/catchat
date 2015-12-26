@@ -15,8 +15,9 @@
 
   "web_accessible_resources":
     [
-      "logo-clear.png",
-      "logo-hover.png",
-      "popup.html"
+      "img/logo-clear.png",
+      "img/logo-hover.png",
+      "popup.html",
+      "font/*"
     ]
 }
