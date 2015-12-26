@@ -1,17 +1,29 @@
-body {
-    min-width:300px;
+/* The Cat Button in the FB Chat Box */
+.catbutton {
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.catbutton:active {
+	opacity: .2;
 }
 
+/* The Popup */
+#catPopUp {
+	width: 285px;
+	height: 320px;
+	position: absolute;
+	bottom: 54px;
+	right: 240px;
+	background-color: #fff;
+	border: 0;
+    border-radius: 6px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .1), 0 1px 10px rgba(0, 0, 0, .35);
+}
 #picture {
 	min-width:500px;
 }
-
 #picture img {
-	width: 100%;
-	height: auto;
-}
-
-#catButtonImage {
 	width: 100%;
 	height: auto;
 }
