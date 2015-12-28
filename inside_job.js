@@ -23,9 +23,8 @@ function getMessages() {
 }
 
 function filterMessages() {
-	console.log('filter messages' + lines.length);
+	console.log('filter messages: ' + lines.length + ' messages found.');
 	for (var i = 0; i < lines.length;) {
-		console.log(i + ' ' + lines[i]);
 		var isBad = false;
 		for (j = 0; j < bad.length; j++) {
 			if (lines[i] == null) {
@@ -81,11 +80,17 @@ function implantButton() {
 	});
 }
 
+function position() {
+	var leftOffset = $('a.catbutton').offset().left - 247;
+	$('#catPopUp').css('left', leftOffset);
+}
+
 function popUp() {
 	$('#catPopUp').removeClass('hidden_elem');
 	$('.uiContextualLayerPositioner').addClass('hidden_elem');
 	$('a.catbutton').css('background-image', 'url(' + imgURLselected + ')');
 	$('._30yy._yht').removeClass('open');
+	position();
 	generate();
 }
 
@@ -114,3 +119,10 @@ $( window ).load(function() {
 	$('body').click(function() { popDown() });
 
 });
+
+$( window ).resize(function() {
+
+	position();
+
+});
+
