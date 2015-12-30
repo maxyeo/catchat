@@ -13,11 +13,22 @@
     }
   ],
 
+  "background": {
+    "scripts": ["jquery-2.1.4.min.js","background.js"]
+  },
+
+  "permissions": [
+    "http://thecatapi.com/"
+  ],
+
   "web_accessible_resources":
     [
       "img/logo-clear.png",
       "img/logo-hover.png",
       "popup.html",
-      "font/*"
+      "fonts/impact.eot",
+      "fonts/impact.svg",
+      "fonts/impact.ttf",
+      "fonts/impact.woff"
     ]
 }

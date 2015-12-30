@@ -3,6 +3,7 @@ var lines = [];
 var bad = ['http://', 'https://', 'emoticon'];
 var imgURL = chrome.extension.getURL("img/logo-clear.png");
 var imgURLselected = chrome.extension.getURL("img/logo-hover.png");
+var image = '';
 
 function getMessages() {
 	console.log('getting messages');
@@ -51,17 +52,20 @@ function getText() {
 }
 
 function generate() {
-	console.log('generating');
+	chrome.runtime.sendMessage({greeting: 'hello'}, function(response) {
+		image = response.url;
 
-	var catBody = $('#catBody');
-	catBody.html('');
+		console.log('generating');
+		
+		var catBody = $('#catBody');
+		catBody.html('');
 
-	var catImageURL = 'http://thecatapi.com/api/images/get?format=src&' + new Date().getTime();
-	var catImage = '<div id="picture" style="background-image: url(' + catImageURL + ')">';
-	catBody.append(catImage);
+		var catImage = '<div id="picture" style="background-image: url(' + image + ')">';
+		catBody.append(catImage);
 
-	var catText = '<h3>' + getText() + '</h2>';
-	catBody.append(catText);
+		var catText = '<h3>' + getText() + '</h2>';
+		catBody.append(catText);
+	});
 }
 
 function implantButton() {
