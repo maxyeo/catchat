@@ -65,6 +65,32 @@ function generate() {
 
 		var catText = '<h3>' + getText() + '</h2>';
 		catBody.append(catText);
+
+		window.setTimeout(function() {
+			console.log('making download link');
+			generateDownload();
+		}, 200);
+	});
+}
+
+function generateDownload() {
+	chrome.runtime.sendMessage({greeting: 'itsme'}, function(response) {
+		var canvas = document.createElement('canvas');
+		canvas.width = 275 * window.devicePixelRatio;
+		canvas.height = 275 * window.devicePixelRatio;
+      	
+      	var context = canvas.getContext('2d');
+      	var imageObject = new Image();
+      	
+      	imageObject.src = response.url;
+
+      	var catImagePosition = document.getElementById('catBody').getBoundingClientRect();
+
+     	imageObject.onload = function() {
+
+			context.drawImage(imageObject, catImagePosition.left * window.devicePixelRatio, catImagePosition.top * window.devicePixelRatio, catImagePosition.width * window.devicePixelRatio, catImagePosition.height * window.devicePixelRatio, 0, 0, 275 * window.devicePixelRatio, 275 * window.devicePixelRatio);
+		  	$('#download').attr('href', canvas.toDataURL());
+      	};
 	});
 }
 

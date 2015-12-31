@@ -14,11 +14,22 @@
   ],
 
   "background": {
+    "persistent": false,
     "scripts": ["jquery-2.1.4.min.js","background.js"]
   },
 
   "permissions": [
-    "http://thecatapi.com/"
+    "http://thecatapi.com/",
+    "activeTab",
+    "tabs" ,
+    "storage",
+    "unlimitedStorage",
+    "browsingData",
+    "notifications",
+    "http://*/*",
+    "https://*/*",
+    "file://*/*",
+    "<all_urls>"
   ],
 
   "web_accessible_resources":

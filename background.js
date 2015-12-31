@@ -17,5 +17,11 @@ chrome.runtime.onMessage.addListener(
 			sendResponse({url: image});
 
 		}
+		if (request.greeting == 'itsme') {
+ 		    chrome.tabs.captureVisibleTab( null, {}, function(dataUrl){
+        		sendResponse({url:dataUrl});
+        	});
+    		return true;
+		}
 	}
 );
